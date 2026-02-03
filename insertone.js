@@ -4,7 +4,7 @@ use('bosch')
 
 db.people.insertOne({
     name: "Donathan",
-    last: "Lima",
+    lastname: "Lima",
     salary: 0.5
 })
 

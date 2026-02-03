@@ -50,6 +50,11 @@ const arrpeople = [
         name: 'Thayna',
         lastname: 'Kaizi',
         salary: 1
+    },
+    {
+        name: 'Cesar',
+        lastname: 'Lima',
+        salary: 1
     }
 ]
 
