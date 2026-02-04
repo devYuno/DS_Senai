@@ -16,3 +16,12 @@ db.people.updateMany(
 
 use('telefonia')
 db.people.find({ nome: /a/i})
+
+use('telefonia')
+db.people.updateMany(
+    { telefone: /41/ },
+    { $set: { cidade: 'Curitiba'}}
+)
+
+use('telefonia')
+db.people.find({ nome: /a/i})
