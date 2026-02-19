@@ -27,20 +27,21 @@ router
         res.status(200).send({ response: `${nome} ${sobrenome}` })
     })
 
-    .put('/atualizar/:id', (req, res) => {
+    .put('/atualizar/:id', (req, res) => {  // atualiza todos os dados 
         const { id } = req.params
         const { nome, sobrenome } = req.body
         res.status(200).send({ response: `Atualizando o usuário ${id} -> ${nome} ${sobrenome}`})
     })
-    .patch('/atualizar/:id', (req, res) => {
-        const { id } = req.params
-        const { nome } = req.body
-        res.status(200).send({ response: `Atualizando o usuário ${id} -> ${nome}`})
-    })
+    // .patch('/atualizar/:id', (req, res) => {  // atualiza só um dos dados
+    //     const { id } = req.params
+    //     const { nome } = req.body
+    //     res.status(200).send({ response: `Atualizando o usuário ${id} -> ${nome}`})
+    // })
 
     .delete('/delete/:id', (req, res) => {
         const { id } = req.params
-        res.status
+        const { nome } = req.body
+        res.status(200).send({ response: `Usuário ${nome} deletado!`})
     })
 
 export default router;
