@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from 'express';
+import express, { Router } from 'express';
 
 const router: Router = express.Router();
 
@@ -11,19 +11,35 @@ interface user {
     createdAt: Date;
 }
 
-const nextId = 0;
+var nextId = 0;
 
 const users: user[] = []
 
 router
     .get('/', (req, res) => {
+
         if (users.length == 0) {
-            res.status(404).send({ response: "No registered users found." })
+            return res.status(404).send({ response: "No registered users found." })
         }
-        else {
-            res.status(200).send({ users: users })
+
+        const { type, active } = req.query;
+        let filter = users;
+
+        if (type) {
+            filter = filter.filter(u => u.type === type)
         }
+        if (active) {
+            let isActive = active === "true";
+            filter = filter.filter(u => u.active === isActive)
+        }
+
+        if (filter.length == 0) {
+            return res.status(404).send({ response: "Users not found." })
+        }
+
+        return res.status(200).send({ users: filter })
     })
+
     .get('/:id', (req, res) => {
         const { id } = req.params
         let convertId = Number(id)
@@ -42,12 +58,35 @@ router
             type
         } = req.body
 
+        // Valida se o Id é unico, se não for, incrementa. Se for unico, sai do loop.
+        let existId = true;
+        while (existId) {
+            if (users.some(u => u.id === nextId)) {
+                nextId++;
+            } else {
+                existId = false;
+            }
+        }
+
         let id = nextId;
         let active = true;
         let createdAt = new Date();
+        let emailLower = email.toLowerCase()
 
-        users.push({ id, name, email, type, active, createdAt })
-        res.status(201).send({ message: "User registered successfully!" })
+        // Validação de email repetido
+        if (users.some(u => u.email === emailLower)) {
+            return res.status(400).send({ response: "Validation error: This email is already registered." })
+        }
+
+        // Validação de nome e email
+        if (!name || !email) {
+            return res.status(400).send({ response: "Error: Name and email are required." })
+        }
+
+        users.push({ id, name, email: emailLower, type, active, createdAt });
+        res.status(201).send({ message: "User registered successfully!", user: users.find(u => u.id === id) });
     })
+
+
 
 export default router;
