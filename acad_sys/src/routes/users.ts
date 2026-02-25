@@ -87,6 +87,72 @@ router
         res.status(201).send({ message: "User registered successfully!", user: users.find(u => u.id === id) });
     })
 
+    .put('/updateall/:id', (req, res) => {
+        const { id } = req.params;
+        const { name, email, type } = req.body;
+        const convertId = Number(id);
 
+        if (!name || !email || !type) {
+            return res.status(400).send({ response: "Error: all information is required." });
+        }
+
+        var user = users.find(u => u.id === convertId);
+
+        if (!user) {
+            return res.status(404).send({ response: "User not found!" });
+        }
+
+        let emailLower = email.toLowerCase();
+
+        if (users.some(u => u.email === emailLower)) {
+            return res.status(400).send({ response: "Validation error: This email is already registered." });
+        }
+
+        user.name = name;
+        user.email = emailLower;
+        user.type = type;     
+
+        return res.status(200).send({ message: "User update successfully!", user: user });
+    })
+
+    .patch('/update/:id', (req, res) => {
+        const { id } = req.params;
+        const { name, email, type } = req.body;
+        const convertId = Number(id);
+
+        var user = users.find(u => u.id === convertId);
+
+        if (!user) {
+            return res.status(404).send({ response: "User not found!" })
+        }
+
+        let emailLower = email.toLowerCase();
+
+        if (users.some(u => u.email === emailLower)) {
+            return res.status(400).send({ response: "Validation error: This email is already registered." });
+        }
+
+        user.name = name;
+        user.email = emailLower;
+        user.type = type;
+
+        return res.status(200).send({ message: "User update successfully!", user: user });
+    
+    })
+
+    .delete('/delete/:id', (req, res) => {
+        const { id } = req.params;
+        const convertId = Number(id);
+
+        const user = users.find(u => u.id === convertId);
+
+        if (!user) {
+            return res.status(404).send({ response: "User not found!" })
+        }
+
+        const confirm = users.splice(users.indexOf(user), 1)
+
+        return res.status(200).send({ message: "User deleted successfully!", user: confirm })
+    })
 
 export default router;
