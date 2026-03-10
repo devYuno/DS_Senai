@@ -1,7 +1,7 @@
 import express from "express";
 import routes from "./routes/routes.ts";
 import connectDB from "./database/database.ts";
-import cors from 'cors'
+import cors from 'cors';
 
 const port = 8080;
 const app = express();
