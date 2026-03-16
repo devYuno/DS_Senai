@@ -4,17 +4,34 @@ import Product from "../models/Product.ts";
 class productController {
     static async findAll(req: Request, res: Response) {
         try {
-            const products = await Product.find();
+            const { name, category, minPrice, maxPrice, inStock } = req.query;
 
-            if (!products) {
+            let filter: any = {};
+
+            if (name) {
+                filter.name = { $regex: name, $options: "i" }; // "i" = ignore case
+            }
+
+            if (category) {
+                filter.category = { $regex: category, $options: "i" };
+            }
+
+            if (minPrice || maxPrice) filter.price = {};
+            
+            if (minPrice) filter.price.$gte = parseFloat(String(minPrice));
+            if (maxPrice) filter.price.$lte = parseFloat(String(maxPrice));
+
+            if (inStock !== undefined) {
+                filter.inStock = inStock === 'true'; 
+            }
+
+            const products = await Product.find(filter);
+
+            if (!products || products.length === 0) {
                 return res.status(404).send({ response: "There is no registered product." });
             }
 
-            const { name, category, minPrice, maxPrice, inStock } = req.query;
-
-            
-
-            return res.status(200).send({ products: products });
+            return res.status(200).send({ products });
         }
         catch (error) {
             return res.status(500).send({ message: "server error", error });
@@ -41,11 +58,11 @@ class productController {
             }
 
             await Product.create(product);
-            
-            return res.status(200).send({ response: "Product register sucessfully!", product: product})
+
+            return res.status(200).send({ response: "Product register sucessfully!", product: product })
         }
         catch (error) {
-
+            return res.status(500).send({ message: "server error", error });
         }
     }
 }
