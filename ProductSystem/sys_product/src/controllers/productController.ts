@@ -44,6 +44,43 @@ class productController {
                 description,
                 price,
                 stock,
+                category
+            } = req.body;
+
+            await Product.create({name, description, price, stock, category});
+
+            return res.status(200).send({ response: "Product register sucessfully!", product: product })
+        }
+        catch (error) {
+            return res.status(500).send({ message: "server error", error });
+        }
+    }
+
+    static async findById(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+
+            const product = await Product.findById(id);
+
+            if (!product) {
+                return res.status(404).send({ response: "Product not found!"})
+            }
+
+            return res.status(200).send({ product})
+        }
+        catch (error){
+            return res.status(500).send({ message: "server error", error });
+        }
+    }
+
+    static async update(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const {
+                name,
+                description,
+                price,
+                stock,
                 category,
                 createdAt
             } = req.body;
@@ -65,7 +102,7 @@ class productController {
             return res.status(500).send({ message: "server error", error });
         }
     }
-    
+
 }
 
 export default productController;
