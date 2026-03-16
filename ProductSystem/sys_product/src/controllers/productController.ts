@@ -65,6 +65,7 @@ class productController {
             return res.status(500).send({ message: "server error", error });
         }
     }
+    
 }
 
 export default productController;
