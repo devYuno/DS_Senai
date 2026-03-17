@@ -47,7 +47,7 @@ class productController {
                 category
             } = req.body;
 
-            await Product.create({name, description, price, stock, category});
+            const product = await Product.create({name, description, price, stock, category});
 
             return res.status(200).send({ response: "Product register sucessfully!", product: product })
         }
@@ -81,28 +81,21 @@ class productController {
                 description,
                 price,
                 stock,
-                category,
-                createdAt
+                category
             } = req.body;
 
-            const product = {
-                name,
-                description,
-                price,
-                stock,
-                category,
-                createdAt
+            const product = await Product.findByIdAndUpdate(id, {name, description, price, stock, category}, { new: true })
+
+            if(!product) {
+                return res.status(404).send({ massage: "Produto não encontrado. "})
             }
 
-            await Product.create(product);
-
-            return res.status(200).send({ response: "Product register sucessfully!", product: product })
+            return res.status(200).send({ response: "Product update sucessfully!", product: product })
         }
         catch (error) {
             return res.status(500).send({ message: "server error", error });
         }
     }
-
 }
 
 export default productController;
