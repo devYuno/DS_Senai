@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Product from "../models/Product.ts";
 
 class productController {
@@ -87,13 +87,30 @@ class productController {
             const product = await Product.findByIdAndUpdate(id, {name, description, price, stock, category}, { new: true })
 
             if(!product) {
-                return res.status(404).send({ massage: "Produto não encontrado. "})
+                return res.status(404).send({ massage: "Product not found! "})
             }
 
             return res.status(200).send({ response: "Product update sucessfully!", product: product })
         }
         catch (error) {
             return res.status(500).send({ message: "server error", error });
+        }
+    }
+
+    static async remove(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { id } = req.params;
+
+            const deleted = await Product.findByIdAndDelete(id);
+
+            if (!deleted) {
+                return res.status(404).send({ message: "Product not found!" })
+            }
+
+            return res.status(200).send({ message: "Product delete sucessfully!" })
+        }
+        catch (error) {
+            return res.status(500).send({ message: "Server error.", error})
         }
     }
 }
