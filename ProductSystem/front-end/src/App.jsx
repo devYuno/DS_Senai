@@ -1,30 +1,15 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { RegisterUserPage } from './pages/RegisterUser/RegisterUserPage'
 import './App.css'
 
 function App() {
-  const [products, setProducts] = useState([])
-
-  const fetchProducts = async () => {
-    const response = await axios.get('localhost:8080/products')
-    setProducts(response.data)
-  }
-
   return (
-    <>
-      {
-        products.map((product) => {
-          return(
-            <div key={product._id}>
-              <span>{product.name}</span>
-              <span>{product.price}</span>
-            </div>
-          )
-        })
-      }
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/register' element={<RegisterUserPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
