@@ -1,4 +1,6 @@
-const [products, setProducts] = useState([])
+export const GetProductsPage = () => {
+
+  const [products, setProducts] = useState([])
 
   const fetchProducts = async () => {
     const response = await axios.get('localhost:8080/products')
@@ -19,3 +21,4 @@ const [products, setProducts] = useState([])
       }
     </>
   )
+}

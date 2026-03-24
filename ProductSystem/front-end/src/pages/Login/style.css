@@ -1,10 +1,10 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
+}
 
-#page {
+.page {
     width: 100vw;
     height: 100vh;
     background-color: rgb(67, 104, 80);
@@ -13,9 +13,9 @@
     align-items: center;
 }
 
-#container{
+.container {
     width: 28rem;
-    height: 35rem;
+    height: 32rem;
     background-color: rgb(145, 189, 158);
     border-radius: 10px;
     padding: 2rem;
@@ -24,23 +24,11 @@
     justify-content: center;
     flex-direction: column;
     color: rgb(53, 83, 63);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
-    #container h1 {
-        margin: 1rem;
-    }
 
-    #container .inputs {
-        width: max-content;
-        height: 12rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 1rem;
-    }
 
-    #container button{
+    .container button {
         height: 2.5rem;
         width: 20rem;
         border-radius: 15px;
@@ -49,19 +37,28 @@
         font-weight: bold;
         border: 0;
         font-size: large;
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: .3rem
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    #container button:hover {
+
+        .container button:hover {
             background-color: rgb(58, 92, 70);
-            cursor: pointer;
         }
 
-        #container button:active {
+        .container button:active {
             background-color: rgb(49, 78, 59);
         }
 
-    #container input {
+    .container .inputs {
+        width: max-content;
+        height: 6rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 2.5rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+
+    .container input {
         background-color: rgb(219, 235, 224);
         height: 2.5rem;
         width: 20rem;
@@ -71,25 +68,25 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
-        #container input:hover {
+
+        .container input:hover {
             background-color: rgb(202, 226, 210);
         }
 
-        #container input:focus {
-            outline: none; 
-            border: none; 
+        .container input:focus {
+            outline: none;
+            border: none;
         }
 
-        #container input:active {
+        .container input:active {
             background-color: rgb(178, 209, 189);
         }
     
-    #container a{
+    .container a{
         margin: 1rem;
     }
-        #container a:hover{
+        .container a:hover{
             color: rgb(19, 37, 26);
             cursor: pointer;
             text-decoration: underline;
         }
-
