@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import { RegisterUserPage } from './pages/RegisterUser/RegisterUserPage'
 import { LoginPage } from './pages/Login/LoginPage'
+import { GetProductsPage } from './pages/Products/GetProductsPage'
 import './App.css'
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
         <Route path='/'></Route>
         <Route path='/register' element={<RegisterUserPage />}></Route>
         <Route path='/login' element={<LoginPage />}></Route>
-        <Route path='/home' element={<LoginPage />}></Route>
+        <Route path='/home' element={<GetProductsPage />}></Route>
       </Routes>
     </BrowserRouter>
   )

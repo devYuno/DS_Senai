@@ -1,11 +1,20 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
 
 export const LoginPage = () => {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
     const navigate = useNavigate()
+
+    const handleLogin = async () => {
+        const response = await axios.post('http://localhost:8080/auth/login', { email, senha })
+
+        sessionStorage.setItem('token', response.data.token)
+    }
+
+
 
     const SignIn = () => {
         if (!email || !senha) {
