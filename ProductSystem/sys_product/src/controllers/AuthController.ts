@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 import User from "../models/User.ts";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -9,6 +9,12 @@ dotenv.config();
 class AuthController {
     static async register(req: Request, res: Response): Promise<any> {
         const { name, email, password } = req.body;
+
+        const emailExist = await User.findOne({ email: email })
+
+        if (emailExist) {
+            return res.status(409).send({ response: "Esse email ja esta cadastrado "})
+        }
 
         const passwordCrypt = CryptoJS.AES.encrypt(password, process.env.SECRET as string).toString();
 

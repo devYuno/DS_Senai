@@ -1,0 +1,9 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.home-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(217, 247, 226);
+}
