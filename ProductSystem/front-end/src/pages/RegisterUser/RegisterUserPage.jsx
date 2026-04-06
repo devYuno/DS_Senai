@@ -40,6 +40,7 @@ export const RegisterUserPage = () => {
                 text: "Usuário registrado com sucesso!",
                 icon: "success"
             })
+            return navigate('/login');
         }
         catch (e) {
             console.log(e)

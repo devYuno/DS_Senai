@@ -1,14 +1,17 @@
 import './style.css'
+import { useNavigate, Link } from 'react-router-dom'
 
 export const NavBar = () => {
+    const navigate = useNavigate()
+
     return (
         <>
             <div className='container-nav'>
-                <h1>Title</h1>
-                <div className='links'>
-                    <span>Produtos</span>
-                    <span>Produtos</span>
-                </div>
+                <Link className='title' to='/home'>IProdutos</Link>
+                <nav className='links'>            
+                    <Link className='link' to='/products'>Produtos</Link>
+                    <Link className='link' >Registrar</Link>
+                </nav>
                 <div className='config'></div>
             </div>
         </>
