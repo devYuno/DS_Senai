@@ -28,10 +28,10 @@ class productController {
             const products = await Product.find(filter);
 
             if (!products || products.length === 0) {
-                return res.status(404).send({ response: "There is no registered product." });
+                return res.status(200).send({ message: "There is no registered product." });
             }
 
-            return res.status(200).send({ products });
+            return res.status(200).send({ products: products });
         }
         catch (error) {
             return res.status(500).send({ message: "server error", error });

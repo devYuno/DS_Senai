@@ -18,7 +18,8 @@
     width: 100vw;
     height: 100vh;
     background-color: rgb(217, 247, 226);
-    padding-left: 15rem;
+    padding: 2rem 3rem 0 18rem;
+    color: rgb(53, 83, 63);
 }
 
 .container {

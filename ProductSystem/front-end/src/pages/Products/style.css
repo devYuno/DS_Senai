@@ -1,6 +1,28 @@
-.products-page {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(217, 247, 226);
-    padding-left: 15rem;
+.produtos {
+    margin: 2rem;
+}
+
+.header {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+        height: 3rem;
+        width: max-content;
+        border-radius: 8px;
+        background-color: rgb(67, 104, 80);
+        color: white;
+        font-weight: bold;
+        border: 0;
+        font-size: large;
+        padding: 0 1rem 0 1rem;
+
+    }
+    & button:hover {
+       background-color: rgb(58, 92, 70);
+   }
+   & button:active {
+    background-color: rgb(49, 78, 59);
+}
 }
