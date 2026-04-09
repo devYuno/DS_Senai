@@ -1,0 +1,12 @@
+.modal {
+    width: max-content;
+    min-width: 10rem;
+    height: max-content;
+    min-height: 10rem;
+}
+
+.row {
+    width: 100%;
+    min-height: 2rem;
+    max-height: ;
+}

@@ -5,9 +5,13 @@ import './style.css';
 export const InsertProduct = () => {
     return (
         <>
-            <NavBar></NavBar>
+            <NavBar />
             <div className="on-page">
+                <div className="header">
+                    <h1>Cadastro de Produto</h1>               
+                </div>
 
+                
             </div>
         </>
     )

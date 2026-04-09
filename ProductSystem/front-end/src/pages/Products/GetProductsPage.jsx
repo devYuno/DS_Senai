@@ -3,8 +3,10 @@ import { useEffect, useState } from "react"
 import axios from 'axios';
 import '../../Styles/Site.css';
 import './style.css';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const GetProductsPage = () => {
+  const navigate = useNavigate()
 
   const [products, setProducts] = useState([])
   const [notFoundProducts, setNotFoundProducts] = useState(true)
@@ -28,8 +30,8 @@ export const GetProductsPage = () => {
       <div className="on-page">
         <div className="header">
 
-        <h1>Produtos</h1>
-        <button>Cadastrar produto</button>
+          <h1>Produtos</h1>
+          <button onClick={() => navigate('/products/insert')}>Cadastrar produto</button>
         </div>
 
         <div className='produtos'>

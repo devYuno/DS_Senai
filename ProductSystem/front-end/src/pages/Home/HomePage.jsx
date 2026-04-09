@@ -4,8 +4,8 @@ import './style.css'
 export const HomePage = () => {
     return (
         <>
+            <NavBar home={true}/>
             <div className="on-page">
-                <NavBar />
             </div>
         </>
     )

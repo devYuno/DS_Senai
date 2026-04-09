@@ -27,7 +27,7 @@ export const LoginPage = () => {
                 
                 sessionStorage.setItem('token', response.data.token)
 
-                navigate('/home')
+                navigate('/products')
             }
         }
         catch (e) {
