@@ -20,6 +20,19 @@ export const GetProductsPage = () => {
     }
   }
 
+  const deleteProduct = async (_id) => {
+    Swal.fire({
+      title: "Deseja realmente deletar?",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Deletar",
+      denyButtonText: `Cancelar`
+    }).then( async(result) => {
+      await axios.delete(`http://localhost:8080/products/${_id}`)
+      if (result.isConfirmed) Swal.fire("Deletado com sucesso!", "", "success");
+    });
+  }
+
   useEffect(() => {
     fetchProducts()
   }, [])

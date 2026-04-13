@@ -11,6 +11,9 @@ export const InsertProduct = () => {
                     <h1>Cadastro de Produto</h1>               
                 </div>
 
+                <div className="container">
+                    
+                </div>
                 
             </div>
         </>
